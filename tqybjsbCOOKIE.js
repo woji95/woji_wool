@@ -50,7 +50,7 @@ module.exports = {
     "name": "推送-通知 分钟控制",
     "val": "10",
     "type": "number",
-    "desc": "推送以及通知控制在什么分钟段，可设置0-59,默认0到10"
+    "desc": "推送以及通知控制在什么分钟段,可设置0-59,默认0到10"
   }],
   "repo": "https://raw.githubusercontent.com/xl2101200/-/main/tqyb.js",
   "icons": ["https://raw.githubusercontent.com/xl2101200/-/main/tom/tom.jpg", "https://raw.githubusercontent.com/xl2101200/-/main/tom/tom.jpg"],
