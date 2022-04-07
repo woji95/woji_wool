@@ -2,7 +2,7 @@
 
 【只拉 中青看点库】
 
-    ql repo https://github.com/Yiov/wool.git "zqkd_"
+    ql repo https://github.com/woji95/woji_wool.git "zqkd_"
 
 
 
