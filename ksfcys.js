@@ -1,5 +1,5 @@
 /*
-微信小程序：康师傅畅饮社
+微信小程序：康师傅畅饮社 
 邀请链接：https://raw.githubusercontent.com/leafxcy/JavaScript/main/ksfcys.png
 
 1200+积分换5元京东E卡
