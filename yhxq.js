@@ -3,7 +3,7 @@
 项目名称:源火星球
 
 项目注册地址:http://yuanhuo.yuanhuojisuban.com/#/?code=WVY4OS
-邀请码:WVY4OS
+邀请码:WVY4OS 
 
 
 必要变量:
