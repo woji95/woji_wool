@@ -1,5 +1,5 @@
 /*
-机场签到 需要在脚本里填写邮箱密码
+机场签到 需要在脚本里填写邮箱密码 
 corn 0 0 8 * * ? 
 https://raw.githubusercontent.com/QiFengg/QuantumultX_Conf/main/Scripts/jcCheck.js
 */
