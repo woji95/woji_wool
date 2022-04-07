@@ -1,5 +1,5 @@
 /*
-@肥皂 4.7 帮多多 每天2-3毛。。
+@肥皂 4.7 帮多多 每天 2-3毛。。
 下载地址：
 http://woaizhuanqian3.cn/lovemoney.html?promocode=641298&channel=mine
 邀请码：641298 
