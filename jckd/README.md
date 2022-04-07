@@ -2,7 +2,7 @@
 
 【只拉 晶彩看点库】
 
-    ql repo https://github.com/Yiov/wool.git "jc_"
+    ql repo https://github.com/woji95/woji.git "jc_"
 
 
 ## 更新时间
