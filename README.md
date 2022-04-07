@@ -3,6 +3,7 @@
 【拉库】
 
     ql repo https://github.com/woji95/woji.git "" "COOKIE"
+    ql repo https://github.brusewj.workers.dev/https://github.com/woji95/woji.git "" "COOKIE"github.brusewj.workers.dev
 
 
 ## :loudspeaker: 关于小号
