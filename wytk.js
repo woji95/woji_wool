@@ -3,7 +3,7 @@
 软件名称:微娱推客
 
 项目注册地址(微信识别):https://gitee.com/soy-tool/app-script/raw/master/picture/wytk.jpg
-
+ 
 
 必要变量:
 
