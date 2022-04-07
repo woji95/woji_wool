@@ -2,7 +2,7 @@
 
 【只拉 水果天气库】
 
-    ql repo https://github.com/Yiov/wool.git "jctq_"
+    ql repo https://github.com/woji95/woji_wool.git "jctq_"
 
 晶彩天气 已经 改名 水果天气
 
