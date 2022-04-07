@@ -2,8 +2,12 @@
 
 【拉库】
 
+    国外
+    
     ql repo https://github.com/woji95/woji.git "" "COOKIE"
-    ql repo https://github.brusewj.workers.dev/https://github.com/woji95/woji.git "" "COOKIE"github.brusewj.workers.dev
+    
+    国内
+    ql repo https://github.brusewj.workers.dev/https://github.com/woji95/woji.git "" "COOKIE"
 
 
 ## :loudspeaker: 关于小号
