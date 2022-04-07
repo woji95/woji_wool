@@ -1,49 +1,51 @@
 /*
+今日头条极速版
 IOS/安卓: 今日头条极速版
-邀请码： 1173836876
-
+邀请码： CYET6KHK
 老用户每天几毛，新用户可能收益高点
 普通版定时： 1-59/15 6-23 * * *
 激进版定时： 1-59/5 * * * *
 多用户跑的时间会久一点，自己看着改定时吧
-
 自定义UA：捉包拿到自己的UA，填到变量jrttjsbUA里，不填默认用安卓UA
 自定义每次运行阅读文章的数量：填到变量jrttjsbReadNum，不填默认10篇
-农场和种树任务：默认不做，需要做的，把变量jrttjsbFarm填为1
+农场和种树任务：默认做，变量jrttjsbFarm填为 1 做 0 不做
+今日头条极速版视频修复
+app底部-任务，右下角宝箱，开宝箱后点观看视频领金币。抓包广告倒记时结束后金币奖励的链接，关键字：luckycat和excitation_ad。把完整链接替换脚本412行宝箱视频奖励url的值，包括${hostname}。部分视频任务失败，需替换55行id值。
+url似乎是通用的，不同账号都能跑，有时间的大佬可以提取必要关键字。
+今日头条极速版阅读文章时左上角有转圈，抓包转满一圈时金币奖励的链接，关键词:luckycat。替换脚本244行阅读文章奖励url，包括包括${hostname}。
 
-V2P重写：
+修复行号为leafxcy版本的头条。
+感谢原作者提供的脚本 https://raw.githubusercontent.com/leafxcy/JavaScript/main/jrttjsb.js
+脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
+============Quantumultx===============
 [task_local]
 #今日头条极速版
-1-59/15 6-23 * * *  https://raw.githubusercontent.com/leafxcy/JavaScript/main/jrttjsb.js, tag=今日头条极速版, enabled=true
-[rewrite_local]
-luckycat\/lite\/v1\/task\/page_data url script-request-header https://raw.githubusercontent.com/leafxcy/JavaScript/main/jrttjsb.js
-[MITM]
-#每个人的域名不同，都放进去MITM吧，还捉不到就自行捉包填写
-hostname = *.snssdk.com
-hostname = *.toutiaoapi.com
+1-59/15 6-23 * * * https://github.com/JDWXX/ql_all/blob/master/qt/aqc/jrttjsb.js, tag=今日头条极速版, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jxcfd.png, enabled=true
 
-青龙把极速版捉包里面的cookie放到jrttjsbHeader里，多账户用@隔开
+================Loon==============
+[Script]
+cron "1-59/15 6-23 * * *" script-path=https://github.com/JDWXX/ql_all/blob/master/qt/aqc/jrttjsb.js,tag=今日头条极速版
+
+===============Surge=================
+今日头条极速版 = type=cron,cronexp="1-59/15 6-23 * * *",wake-system=1,timeout=3600,script-path=https://github.com/JDWXX/ql_all/blob/master/qt/aqc/jrttjsb.js
+
+============小火箭=========
+今日头条极速版 = type=cron,script-path=https://github.com/JDWXX/ql_all/blob/master/qt/aqc/jrttjsb.js, cronexpr="1-59/15 6-23 * * *", timeout=3600, enable=true
 */
-
-const jsname = '今日头条极速版'
-const $ = Env(jsname)
+const $ = new Env('今日头条极速版');
 const notifyFlag = 1; //0为关闭通知，1为打开通知,默认为1
 const logDebug = 0
-
 //const notify = $.isNode() ? require('./sendNotify') : '';
 let notifyStr = ''
-
 let rndtime = "" //毫秒
 let httpResult //global buffer
-
 let host = 'i.snssdk.com'
 let hostname = 'https://' + host
-
 let userAgent = ($.isNode() ? process.env.jrttjsbUA : $.getdata('jrttjsbUA')) || 'Dalvik/2.1.0 (Linux; U; Android 7.1.2; VOG-AL10 Build/HUAWEIVOG-AL10) NewsArticle/8.2.8 tt-ok/3.10.0.2';
 let userAgentArr = []
 let userHeader = ($.isNode() ? process.env.jrttjsbHeader : $.getdata('jrttjsbHeader')) || '';
 let userHeaderArr = []
-let jrttjsbFarm = ($.isNode() ? process.env.jrttjsbFarm : $.getdata('jrttjsbFarm')) || 0;
+let jrttjsbFarm = ($.isNode() ? process.env.jrttjsbFarm : $.getdata('jrttjsbFarm')) || 1;
 
 let userIdx = 0
 let UAcount = 0
@@ -53,7 +55,7 @@ let readList = []
 
 let validList = []
 let adIdList = [26, 181, 186, 187, 188, 189, 190, 195, 210, 214, 216, 225, 308, 324, 327, 329]
-        
+
 ///////////////////////////////////////////////////////////////////
 
 !(async () => {
@@ -65,19 +67,19 @@ let adIdList = [26, 181, 186, 187, 188, 189, 190, 195, 210, 214, 216, 225, 308, 
     else
     {
         await showUpdateMsg()
-        
+
         if(!(await checkEnv())) {
             return
         }
-        
+
         await initAccountInfo()
         await RunMultiUser()
     }
-  
+
 
 })()
-.catch((e) => $.logErr(e))
-.finally(() => $.done())
+    .catch((e) => $.logErr(e))
+    .finally(() => $.done())
 
 function showUpdateMsg() {
     console.log('\n2021.12.15 9:30 更新：增加推送奖励，修复一个UA的bug，更改默认UA为安卓\n')
@@ -85,9 +87,9 @@ function showUpdateMsg() {
 
 //通知
 async function showmsg() {
-    
-    notifyBody = jsname + "运行通知\n\n" + notifyStr
-    
+
+    notifyBody = $.name + "运行通知\n\n" + notifyStr
+
     if (notifyFlag != 1) {
         console.log(notifyBody);
     }
@@ -101,17 +103,17 @@ async function showmsg() {
 async function GetRewrite() {
     if($request.url.indexOf('luckycat/lite/v1/task/page_data') > -1) {
         let userCK = $request.headers.Cookie
-        
+
         if(userHeader) {
             if(userHeader.indexOf(userCK) == -1) {
                 userHeader = userHeader + '@' + userCK
                 $.setdata(userHeader, 'jrttjsbHeader');
                 ckList = userHeader.split('@')
-                $.msg(jsname+` 获取第${ckList.length}个jrttjsbHeader成功: ${userCK}`)
+                $.msg($.name+` 获取第${ckList.length}个jrttjsbHeader成功: ${userCK}`)
             }
         } else {
             $.setdata(userCK, 'jrttjsbHeader');
-            $.msg(jsname+` 获取第1个jrttjsbHeader成功: ${userCK}`)
+            $.msg($.name+` 获取第1个jrttjsbHeader成功: ${userCK}`)
         }
     }
 }
@@ -127,7 +129,7 @@ async function checkEnv() {
         console.log('未找到有效的jrttjsbHeader')
         return false
     }
-    
+
     if(userAgent) {
         userAgentArr = userAgent.split('@')
     } else {
@@ -135,7 +137,7 @@ async function checkEnv() {
         return false
     }
     UAcount = userAgentArr.length
-    
+
     console.log(`共找到${userHeaderArr.length}个用户，${UAcount}个UA`)
     return true
 }
@@ -155,19 +157,19 @@ async function RunMultiUser() {
             await QuerySleepStatus()
             await QueryWalkInfo()
             await DoneEat()
-            
+
             for(let adId of adIdList) await ExcitationAd(adId)
             //console.log(validList)
-            
+
         }
     }
-    
+
     await ReadArticles()
-    
+
     for(userIdx=0; userIdx<userHeaderArr.length; userIdx++) {
         if(userStatus[userIdx]==true) await QueryUserInfo(0)
     }
-    
+
     if(jrttjsbFarm) {
         for(userIdx=0; userIdx<userHeaderArr.length; userIdx++) {
             if(userStatus[userIdx]==true) {
@@ -179,7 +181,7 @@ async function RunMultiUser() {
                 await QueryFarmLandStatus()
                 await QueryFarmSignStatus()
                 await QueryFarmTask()
-                
+
                 //种树
                 await QueryTreeChallenge()
                 await QueryTreeSignStatus()
@@ -189,7 +191,7 @@ async function RunMultiUser() {
             }
         }
     }
-    
+
 }
 
 //阅读列表
@@ -242,7 +244,7 @@ async function ReadArticles() {
 async function ReadArtsReward() {
     let caller = printCaller()
     let rndGroupId = Math.floor(Math.random()*7000000000000000000)
-    let url = `${hostname}/luckycat/lite/v1/activity/done_whole_scene_task/?aid=35&update_version_code=85221&os_version=15.0&device_platform=iphone`
+    let url = `https://api5-normal-hl.toutiaoapi.com/luckycat/lite/v1/activity/done_whole_scene_task/?session_id=853FDF20-5749-40FA-8A9F-D85F95CB7772&version_code=8.7.4&tma_jssdk_version=2.25.0.20&app_name=news_article_lite&device_id=3035115392862552&channel=App%20Store&resolution=750*1334&aid=35&ab_version=668907%2C3937398%2C668905%2C3937366%2C668903%2C3937392%2C668904%2C3937345%2C668906%2C3937374%2C1859937%2C668908%2C3937402%2C3801462%2C3520489%2C3596061%2C3657424%2C3700363%2C3842519&ab_feature=794528&review_flag=0&ab_group=794528&subchannel=unknown&update_version_code=87420&os_version=15.3.1&ssmix=a&device_platform=iphone&iid=4138990352738724&ab_client=a1%2Cf2%2Cf7%2Ce1&device_type=iPhone12%2C8`
     let body = `{"is_golden_egg":false,"scene_key":"article_detail","group_id":"${rndGroupId}"}`
     let urlObject = populatePostUrl(url,body)
     await httpPost(urlObject,caller)
@@ -428,7 +430,7 @@ async function OpenTreasureBox() {
 async function ExcitationAd(task_id) {
     let caller = printCaller()
     let timeInMS = Math.round(new Date().getTime())
-    let url = `${hostname}/luckycat/lite/v1/task/done/excitation_ad?os_api=25&device_type=VOG-AL10&ssmix=a&manifest_version_code=8280&dpi=240&abflag=3&pass_through=default&cookie_data=JS9ij2PS3AwsrLXtsMlBmg&act_hash=33e5c7c6eceed48faa09bcb731f9cbfe&rom_version=25&app_name=news_article_lite&ab_client=a1%2Ce1%2Cf2%2Cg2%2Cf7&version_name=8.2.8&ab_version=1859936%2C668908%2C3491714%2C668907%2C3491710%2C668905%2C3491678%2C668906%2C3491686%2C668904%2C3491669%2C668903%2C3491704%2C3269751%2C3472846%2C3493942&plugin_state=7731332411413&sa_enable=0&ac=wifi&_request_from=web&update_version_code=82809&channel=lite2_tengxun&_rticket=${timeInMS}&status_bar_height=24&cookie_base=-1E_P8je5Sub5zWkBKiqODt2MECOGuxlsxp2J8N2wuHiAln1gxRIlq9T45zO7j1Y4RwJPfwnZaGcZ871TDjPVA&dq_param=0&device_platform=android&iid=1592553870724568&scm_build_version=1.0.0.1454&mac_address=88%3AB1%3A11%3A61%3A96%3A7B&version_code=828&polaris_version=1.0.5&tma_jssdk_version=1.95.0.28&cdid=19f86713-d4cf-49ea-81ab-541aa5cd7b44&is_pad=1&openudid=711ca30d9d3c10b7&device_id=809664500489800&resolution=720*1280&act_token=0WoqgcXrIdM-iXg179hjJOCBPav6mHf3Biw-ElFmYqvWQIsvoERPbrbEItIYJDJkjXW4NPai8DqYMlLQypO_eQ&os_version=7.1.2&language=zh&device_brand=HUAWEI&aid=35&ab_feature=z1&luckycat_version_name=4.2.0-rc.5&luckycat_version_code=420005`
+    let url = `https://api5-normal-hl.toutiaoapi.com/luckycat/lite/v1/task/done/excitation_ad?session_id=B0259618-53F8-4D3F-9389-1AFAF1ADEE2A&version_code=8.7.4&tma_jssdk_version=2.25.0.20&app_name=news_article_lite&device_id=3035115392862552&channel=App%20Store&resolution=750*1334&aid=35&ab_version=1859937,668908,3937402,668907,3937398,668905,3937366,668903,3937392,668904,3937345,668906,3937374,3801462,3520489,3596061,3657424,3700363,3842519&ab_feature=794528&review_flag=0&ab_group=794528&subchannel=unknown&update_version_code=87420&cdid=1AD105A6-3390-42A4-8061-5D2F1B7B36FC&ac=WIFI&os_version=15.3.1&ssmix=a&device_platform=iphone&iid=4138990352738724&ab_client=a1,f2,f7,e1&device_type=iPhone12,8`
     let body = `{"ad_alias_position":"coin","task_key":"excitation_ad", "task_id" : "${task_id}"}`
     let urlObject = populatePostUrl(url,body)
     await httpPost(urlObject,caller)
@@ -629,7 +631,7 @@ async function EnterFarm() {
     if(!result) return
     console.log(result)
     if(result.status_code == 0) {
-        
+
     } else {
         console.log(`用户${userIdx+1}进入农场失败：${result.message}`)
     }
