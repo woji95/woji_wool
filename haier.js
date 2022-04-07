@@ -2,7 +2,7 @@
 @肥皂 3.16 海尔活动  一天1-2元   红包有效期有一年吧，自己手动app里提现。。
 下载海尔智家app，手机号登录，设置登录密码。退出登录，然后选择密码登录，抓包
 https://zj.haier.net/oauthserver/account/v2/login请求的全部请求头和body
-请求头变量名 ：haierhd   自己格式化去。。
+请求头变量名 ：haierhd   自己格式化去。。 
 body变量名： haierbody
 多账号@分割
 cron 30 9 * * * haier.js
