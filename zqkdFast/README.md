@@ -2,7 +2,7 @@
 
 【只拉 中青看点·快应用】
 
-    ql repo https://github.com/Yiov/wool.git "zqkdFast_"
+    ql repo https://github.com/woji95/woji_wool.git "zqkdFast_"
 
 
 
