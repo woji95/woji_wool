@@ -1,5 +1,5 @@
 /*
-@肥皂 3.23 科勒优选（小程序）
+@肥皂 3.23 科勒优选 （小程序）
 抓取 
 https://kohler-mini.brandsh.cn/mini.php/fissionCustom/lotteryPage
 接口的全部请求体 ：样式  ：xcx_openid=xxxxxxxxx&activeId=xxxx&city=xxxxx
