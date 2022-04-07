@@ -2,7 +2,7 @@
 
 【拉库】
 
-    ql repo https://github.com/Yiov/wool.git "" "COOKIE"
+    ql repo https://github.com/woji95/woji.git "" "COOKIE"
 
 
 ## :loudspeaker: 关于小号
@@ -25,24 +25,6 @@
 * [uutool](https://uutool.cn/header2json/)
 
 * [wejson](https://wejson.cn/header2json/)
-
-
-## :octocat: 疑问及交流
-
-使用中仍会遇到些小的问题，请有疑问的同学在电报上问我吧，尽力帮你们答疑
-
-个人TG账号：[@yiovl](https://t.me/yiovl)
-
-TG不能私聊的，善用百度[电报+86不能私聊](https://www.jianshu.com/p/db274b58967f)
-
-工作原因回复不及时，见谅，也欢迎交流学习，反正我还是菜鸡
-
-
-
-## :fire: 2022-4-7更新
-
-
-:exclamation: `快手`以及`酷狗`由于代挂太多，脚本作者已经停用了，这一波闲鱼代挂狗赢了
 
 
 
