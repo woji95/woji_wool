@@ -244,7 +244,7 @@ async function ReadArticles() {
 async function ReadArtsReward() {
     let caller = printCaller()
     let rndGroupId = Math.floor(Math.random()*7000000000000000000)
-    let url = `https://api5-normal-hl.toutiaoapi.com/luckycat/lite/v1/activity/done_whole_scene_task/?session_id=853FDF20-5749-40FA-8A9F-D85F95CB7772&version_code=8.7.4&tma_jssdk_version=2.25.0.20&app_name=news_article_lite&device_id=3035115392862552&channel=App%20Store&resolution=750*1334&aid=35&ab_version=668907%2C3937398%2C668905%2C3937366%2C668903%2C3937392%2C668904%2C3937345%2C668906%2C3937374%2C1859937%2C668908%2C3937402%2C3801462%2C3520489%2C3596061%2C3657424%2C3700363%2C3842519&ab_feature=794528&review_flag=0&ab_group=794528&subchannel=unknown&update_version_code=87420&os_version=15.3.1&ssmix=a&device_platform=iphone&iid=4138990352738724&ab_client=a1%2Cf2%2Cf7%2Ce1&device_type=iPhone12%2C8`
+    let url = `https://api5-normal-hl.toutiaoapi.com/luckycat/lite/v1/activity/done_whole_scene_task/?session_id=BB9DFC48-0E39-424B-A7E7-12FEF7D68929&version_code=8.7.6&tma_jssdk_version=2.25.0.20&app_name=news_article_lite&device_id=3035115392862552&channel=App%20Store&resolution=750*1334&aid=35&ab_version=668906%2C3937374%2C668904%2C3937345%2C668903%2C3937392%2C1859937%2C668908%2C3937402%2C668907%2C3937398%2C668905%2C3937366%2C3801462%2C3520489%2C3596061%2C3657424%2C3958946&ab_feature=794528&review_flag=0&ab_group=794528&subchannel=unknown&update_version_code=87620&os_version=15.3.1&ssmix=a&device_platform=iphone&iid=2555701445265396&ab_client=a1%2Cf2%2Cf7%2Ce1&device_type=iPhone12%2C8`
     let body = `{"is_golden_egg":false,"scene_key":"article_detail","group_id":"${rndGroupId}"}`
     let urlObject = populatePostUrl(url,body)
     await httpPost(urlObject,caller)
@@ -430,7 +430,7 @@ async function OpenTreasureBox() {
 async function ExcitationAd(task_id) {
     let caller = printCaller()
     let timeInMS = Math.round(new Date().getTime())
-    let url = `https://api5-normal-hl.toutiaoapi.com/luckycat/lite/v1/task/done/excitation_ad?session_id=B0259618-53F8-4D3F-9389-1AFAF1ADEE2A&version_code=8.7.4&tma_jssdk_version=2.25.0.20&app_name=news_article_lite&device_id=3035115392862552&channel=App%20Store&resolution=750*1334&aid=35&ab_version=1859937,668908,3937402,668907,3937398,668905,3937366,668903,3937392,668904,3937345,668906,3937374,3801462,3520489,3596061,3657424,3700363,3842519&ab_feature=794528&review_flag=0&ab_group=794528&subchannel=unknown&update_version_code=87420&cdid=1AD105A6-3390-42A4-8061-5D2F1B7B36FC&ac=WIFI&os_version=15.3.1&ssmix=a&device_platform=iphone&iid=4138990352738724&ab_client=a1,f2,f7,e1&device_type=iPhone12,8`
+    let url = `https://api5-normal-hl.toutiaoapi.com/luckycat/lite/v1/task/done/excitation_ad?session_id=8D0063B8-C56C-4F27-9DF2-921091F65108&version_code=8.7.5&tma_jssdk_version=2.25.0.20&app_name=news_article_lite&device_id=3035115392862552&channel=App%20Store&resolution=750*1334&aid=35&ab_version=668904,3937345,668906,3937374,1859937,668908,3937402,668907,3937398,668905,3937366,668903,3937392,3801462,3520489,3596061,3657424,3700363,3958946&ab_feature=794528&review_flag=0&ab_group=794528&subchannel=unknown&update_version_code=87520&cdid=1AD105A6-3390-42A4-8061-5D2F1B7B36FC&ac=WIFI&os_version=15.3.1&ssmix=a&device_platform=iphone&iid=902030884092539&ab_client=a1,f2,f7,e1&device_type=iPhone12,8`
     let body = `{"ad_alias_position":"coin","task_key":"excitation_ad", "task_id" : "${task_id}"}`
     let urlObject = populatePostUrl(url,body)
     await httpPost(urlObject,caller)
