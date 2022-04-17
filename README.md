@@ -6,7 +6,7 @@
     ql repo https://github.com/woji95/woji.git "" "COOKIE"
     
     国内
-    ql repo https://gitclone.com/gogs/woji/WJwool.git "" "zqkd_|jc_|jctq_|"
+    ql repo https://gitclone.com/gogs/woji/WJwool.git "" "zqkd_|jc_|jctq_|zqkdFast_"
 
 
 ## :loudspeaker: 关于小号
