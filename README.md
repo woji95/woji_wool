@@ -6,7 +6,7 @@
     ql repo https://github.com/woji95/woji.git "" "COOKIE"
     
     国内
-    ql repo https://github.brusewj.workers.dev/https://github.com/woji95/woji.git "" "COOKIE"
+    ql repo https://gitclone.com/gogs/woji/WJwool.git
 
 
 ## :loudspeaker: 关于小号
