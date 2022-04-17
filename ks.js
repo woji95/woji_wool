@@ -3,8 +3,6 @@ IOS/安卓： 快手 普通版
 邀请下载链接：https://kicdjpmlo.sx3i65zvgw3g8k.com/fission/offkwai/landpagex?code=2235402609&platform=qrcode&fid=2764597391&subBiz=INVITE_CODE&kpn=KUAISHOU&shareToken=Y3rDbpqo1
 邀请二维码(直接扫描打不开的话，下载后用快手APP扫一扫)：https://raw.githubusercontent.com/leafxcy/JavaScript/main/ks.png
 
-脚本目前会做签到和翻倍，开宝箱和翻倍，看广告任务，逛街任务，直播任务
-
 CK里的api_st跟快手极速版的通用，但是需要额外一个did(设备号)，同一台设备捉包的话可以把did复制一遍粘贴到每个账号的api_st后面，建议用不同设备捉包
 V2P和圈X配置好重写后，应该打开APP就能获取到CK，重写跟快手极速版的冲突，需要关掉其中一个
 青龙把任意包里的kuaishou.api_st=xxxxxxxxxxxx;和did=yyyyyyyyyyy;这两段连在一起放到变量ksCookie里，多账户换行或者@隔开
