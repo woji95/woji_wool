@@ -22,8 +22,8 @@ let hjh = {
 */
 
 let iku = {
-  email: "",
-  pwd: "",
+  email: "1902274086@qq.com",
+  pwd: "1902274086",
 };
 
 /*
@@ -34,8 +34,8 @@ let iku = {
 */
 
 let jj = {
-  email: "",
-  pwd: "",
+  email: "woji95",
+  pwd: "123456789s",
 };
 
 const $ = new Env("机场签到");
